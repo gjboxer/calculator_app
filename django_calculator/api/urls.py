@@ -16,5 +16,6 @@ urlpatterns = [
     path("tan/", views.tan, name="tan"),
     path("factorial/", views.factorial, name="factorial"),
     path("exponential/", views.exponential, name="exponential"),
+    path('divide_floor/', views.divide_floor, name='divide_floor'),
 ]
 
