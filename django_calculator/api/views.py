@@ -14,12 +14,56 @@ def addition(request):
 
             result = num1 + num2
             return JsonResponse({"Addition of num1 by num2 is ": result})
+        
+        except Exception as e:
+            return JsonResponse({"error": str(e)})
+    else:
+        return JsonResponse({"error": "GET request required."})
     
-# Create your views here.
+def subtract(request):
+    if request.method == "GET":
+        data = request.GET
+        try:
+            num1 = float(data.get("num1"))
+            num2 = float(data.get("num2"))
+            
+            result = num1 - num2
+            return JsonResponse({"Subtraction of num1 by num2 is ": result})
+        except Exception as e:
+            return JsonResponse({"error": str(e)})
+    else:
+        return JsonResponse({"error": "GET request required."})
+            
+def multiply(request):
+    if request.method == "GET":
+        data = request.GET
+        try:
+            num1 = float(data.get("num1"))
+            num2 = float(data.get("num2"))
 
-# test api function which return hello world
-def index(request):
-    return HttpResponse("Hello, world. You're at the api index.")
+            result = num1 * num2
+            return JsonResponse({"Multiplication of num1 by num2 is ": result})
+        except Exception as e:
+            return JsonResponse({"error": str(e)})
+    else:
+        return JsonResponse({"error": "GET request required."})
+
+def divide(request):
+    if request.method == "GET":
+        data = request.GET
+        try:
+            num1 = float(data.get("num1"))
+            num2 = float(data.get("num2"))
+
+            if num2 != 0:
+                result = num1 / num2
+                return JsonResponse({"Division of num1 by num2 is ": result})
+            else:
+                return JsonResponse({"error": "Cannot divide by zero"}, status=400)
+        except Exception as e:
+            return JsonResponse({"error": str(e)})
+    else:
+        return JsonResponse({"error": "GET request required."})
 
 # scientific calculator api function
 def square_root(request):
@@ -60,17 +104,6 @@ def log(request):
     else:
         return JsonResponse({"error": "GET request required."})
     
-def subtract(request):
-    if request.method == "GET":
-        data = request.GET
-        try:
-            num1 = float(data.get("num1"))
-            num2 = float(data.get("num2"))
-            
-            result = num1 - num2
-            return JsonResponse({"Subtraction of num1 by num2 is ": result})
-            
-
 def log10(request):
     if request.method == "GET":
         data=request.GET
@@ -83,16 +116,6 @@ def log10(request):
     else:
         return JsonResponse({"error": "GET request required."})
     
-def multiply(request):
-    if request.method == "GET":
-        data = request.GET
-        try:
-            num1 = float(data.get("num1"))
-            num2 = float(data.get("num2"))
-
-            result = num1 * num2
-            return JsonResponse({"Multiplication of num1 by num2 is ": result})
-
 def sin(request):
     if request.method == "GET":
         data=request.GET
@@ -118,19 +141,6 @@ def cos(request):
     else:
         return JsonResponse({"error": "GET request required."})
     
-def divide(request):
-    if request.method == "GET":
-        data = request.GET
-        try:
-            num1 = float(data.get("num1"))
-            num2 = float(data.get("num2"))
-
-            if num2 != 0:
-                result = num1 / num2
-                return JsonResponse({"Division of num1 by num2 is ": result})
-            else:
-                return JsonResponse({"error": "Cannot divide by zero"}, status=400)
-
 def tan(request):
     if request.method == "GET":
         data=request.GET
