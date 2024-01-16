@@ -3,6 +3,10 @@ from . import views
 
 urlpatterns = [
     path("", views.index, name="index"),
+    path('addition/', views.addition, name='addition'),
+    path('subtract/', views.subtract, name='subtract'),
+    path('multiply/', views.multiply, name='multiply'),
+    path('divide/', views.divide, name='divide'),
     path("square_root/", views.square_root, name="square_root"),
     path("power/", views.power, name="power"),
     path("log/", views.log, name="log"),
@@ -13,3 +17,4 @@ urlpatterns = [
     path("factorial/", views.factorial, name="factorial"),
     path("exponential/", views.exponential, name="exponential"),
 ]
+

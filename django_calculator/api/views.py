@@ -1,6 +1,20 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 import math
+
+def index(request):
+    return HttpResponse("Hello, world. You're at the api index.")
+
+def addition(request):
+    if request.method == "GET":
+        data = request.GET
+        try:
+            num1 = float(data.get("num1"))
+            num2 = float(data.get("num2"))
+
+            result = num1 + num2
+            return JsonResponse({"Addition of num1 by num2 is ": result})
+    
 # Create your views here.
 
 # test api function which return hello world
@@ -40,10 +54,22 @@ def log(request):
             num1 = float(data.get("num1"))
             result = math.log(num1)
             return JsonResponse({"Log of num1 is ": result})
+
         except Exception as e:
             return JsonResponse({"error": str(e)})
     else:
         return JsonResponse({"error": "GET request required."})
+    
+def subtract(request):
+    if request.method == "GET":
+        data = request.GET
+        try:
+            num1 = float(data.get("num1"))
+            num2 = float(data.get("num2"))
+            
+            result = num1 - num2
+            return JsonResponse({"Subtraction of num1 by num2 is ": result})
+            
 
 def log10(request):
     if request.method == "GET":
@@ -57,6 +83,16 @@ def log10(request):
     else:
         return JsonResponse({"error": "GET request required."})
     
+def multiply(request):
+    if request.method == "GET":
+        data = request.GET
+        try:
+            num1 = float(data.get("num1"))
+            num2 = float(data.get("num2"))
+
+            result = num1 * num2
+            return JsonResponse({"Multiplication of num1 by num2 is ": result})
+
 def sin(request):
     if request.method == "GET":
         data=request.GET
@@ -76,10 +112,24 @@ def cos(request):
             num1 = float(data.get("num1"))
             result = math.cos(num1)
             return JsonResponse({"Cos of num1 is ": result})
+
         except Exception as e:
             return JsonResponse({"error": str(e)})
     else:
         return JsonResponse({"error": "GET request required."})
+    
+def divide(request):
+    if request.method == "GET":
+        data = request.GET
+        try:
+            num1 = float(data.get("num1"))
+            num2 = float(data.get("num2"))
+
+            if num2 != 0:
+                result = num1 / num2
+                return JsonResponse({"Division of num1 by num2 is ": result})
+            else:
+                return JsonResponse({"error": "Cannot divide by zero"}, status=400)
 
 def tan(request):
     if request.method == "GET":
@@ -112,6 +162,7 @@ def exponential(request):
             num1 = float(data.get("num1"))
             result = math.exp(num1)
             return JsonResponse({"Exponential of num1 is ": result})
+
         except Exception as e:
             return JsonResponse({"error": str(e)})
     else:
