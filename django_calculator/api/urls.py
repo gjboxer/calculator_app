@@ -16,5 +16,6 @@ urlpatterns = [
     path("tan/", views.tan, name="tan"),
     path("factorial/", views.factorial, name="factorial"),
     path("exponential/", views.exponential, name="exponential"),
+    path("/remainder/",views.remainder, name="remainder"),
 ]
 

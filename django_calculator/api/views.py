@@ -177,3 +177,18 @@ def exponential(request):
             return JsonResponse({"error": str(e)})
     else:
         return JsonResponse({"error": "GET request required."})
+    
+def remainder(request):
+    if request.method == "GET":
+        data = request.GET
+        try:
+            num1 = float(data.get("num1"))
+            num2 = float(data.get("num2"))
+
+            result = num1 % num2
+            return JsonResponse({"Remainder is ": result})
+        
+        except Exception as e:
+            return JsonResponse({"error": str(e)})
+    else:
+        return JsonResponse({"error": "GET request required."})
